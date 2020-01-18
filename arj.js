@@ -1,8 +1,7 @@
-class Arj {
-    constructor(x, y) {
-        this.x = x;
-        this.y = y;
-        this.energy =5;
+class Arj extends LivingCreature {
+    constructor(x,y,index){
+        super(x,y,index);
+        this.energy=5;
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -21,7 +20,6 @@ class Arj {
             [this.x, this.y + 2],
             [this.x + 2, this.y + 2]
         ]
-
     }
 
     getNewDirections() {
@@ -44,24 +42,10 @@ class Arj {
             [this.x + 2, this.y + 2]
         ]
     }
-
     chooseCell(character) {
         this.getNewDirections()
-        var found = []
-        for (var i in this.directions) {
-            var x = this.directions[i][0]
-            var y = this.directions[i][1]
-            if (x >= 0 && x < matrix[0].length && y >= 0 && y < matrix.length) {
-                if (matrix[y][x] == character) {
-                    found.push(this.directions[i])
-                }
-            }
-
-        }
-        return found;
-
+        return super.chooseCell(character);
     }
-
 
     chooseCellAll() {
         this.getNewDirections()
